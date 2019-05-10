@@ -7,4 +7,6 @@
     * [MaxPool2d](Chapter2/MaxPool2d.md)
 * [mySQL](Chapter3/README.md)
     * [mysqldump](Chapter3/mysqldump.md)
+* [Windows 10](Chapter4/README.md)
+    * [Windows Anytime Upgrade](Chapter4/wau.md)
 

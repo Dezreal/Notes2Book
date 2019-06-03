@@ -1,4 +1,0 @@
-# Introduction
-
-### [SUMMARY](SUMMARY.md)
-

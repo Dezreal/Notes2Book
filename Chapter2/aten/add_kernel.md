@@ -273,7 +273,7 @@ void TensorIterator::for_each(const loop2d_t& loop) {
 
 ##### ez.yang的演讲
 
-![img](..\..\images\parallel.jpg)
+![img](../../images/parallel.jpg)
 
 > 在 CPU 上，你通常需要并行化你的代码。过去，这通常是通过直接在你的代码中添加 OpenMP pragma 来实现。
 
@@ -293,7 +293,7 @@ inline void parallel_for(
 - 就地操作与复制操作的区别只在于高级API的实参传递上。
 - 对于开发元素间（element wise）计算，首先需要定义调度（dispatch），并作为调用接口，而后设计并调用计算核，在计算核的lambda表达式中定义向量与标量的计算方式，不同计算的差异也主要体现在这里。另外，不同的数据类型的计算方法差异也在这里。
 
-   ![add_kernel_简单UML](..\..\images\add_kernel_UML.png)
+   ![add_kernel_简单UML](../../images/add_kernel_UML.png)
 - 底层的计算模板中，步幅（stride）的概念得到体现。
 - 底层的计算模板中，一般通过取Tensor的迭代器的方式进行操作。
 

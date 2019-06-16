@@ -83,7 +83,7 @@ REGISTER_DISPATCH(add_stub, &add_kernel); // 调度注册
 }} // namespace at::native
 ```
 
-`scalar_t`: type of scalar 例如：
+`scalar_t`: 标量类型，例如：
 
 ```c++
 // pytorch\aten\src\TH\THGenerateFloatType.h
@@ -243,7 +243,7 @@ template <typename func_t>
 static inline void binary_loop(char** data, const int64_t* strides, int64_t i, int64_t n, func_t op) {
   LOOP_HEADER(func_t, data, strides) // 声明输入输出Tensor的指针、步幅
   for (; i < n; i++) {
-    arg1_t in1 = *(arg1_t*)(in1_ptr + i * s1);
+    arg1_t in1 = *(arg1_t*)(in1_ptr + i * s1); // 步幅和原生指针相关的计算
     arg2_t in2 = *(arg2_t*)(in2_ptr + i * s2);
     arg0_t out = op(in1, in2); // lambda表达式执行
     *(arg0_t*)(out_ptr + i * s0) = out;
@@ -291,9 +291,14 @@ inline void parallel_for(
 #### 要点总结
 
 - 就地操作与复制操作的区别只在于高级API的实参传递上。
+
 - 对于开发元素间（element wise）计算，首先需要定义调度（dispatch），并作为调用接口，而后设计并调用计算核，在计算核的lambda表达式中定义向量与标量的计算方式，不同计算的差异也主要体现在这里。另外，不同的数据类型的计算方法差异也在这里。
 
    ![add_kernel_简单UML](../../images/add_kernel_UML.png)
-- 底层的计算模板中，步幅（stride）的概念得到体现。
+   
+- 底层的计算模板中，步幅（stride）的概念得到体现。步幅的具体规则可以参考[小泽给出的知乎文章](<https://zhuanlan.zhihu.com/p/67834038>)以及[Stride Visualizer](https://ezyang.github.io/stride-visualizer/index.html)。
+
 - 底层的计算模板中，一般通过取Tensor的迭代器的方式进行操作。
+
+- 对基于步幅的计算操作，PyTorch封装的比较好，如果我们要自己开发线性计算库，建议我们参考其思路后自行编写相关函数。
 

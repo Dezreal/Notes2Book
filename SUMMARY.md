@@ -7,6 +7,7 @@
 * [pytorch](Chapter2/README.md)
     * [MaxPool2d](Chapter2/MaxPool2d.md)
     * [pytorch源代码](Chapter2/source.md)
+    * [LibDL与LibTorch结合效果总结](Chapter2/LibDL与LibTorch结合效果总结.md)
 * [mySQL](Chapter3/README.md)
     * [mysqldump](Chapter3/mysqldump.md)
 * [Windows 10](Chapter4/README.md)
